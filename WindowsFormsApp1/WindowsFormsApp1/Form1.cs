@@ -32,8 +32,8 @@ namespace WindowsFormsApp1
             Choices commands = new Choices();
             commands.Add(new string[] {
                 "conectar",
-                "despega",
-                "aterriza",
+                "despegar",
+                "aterrizar",
                 "derecha",
                 "izquierda",
                 "avanzar",
@@ -66,10 +66,10 @@ namespace WindowsFormsApp1
                 case "conectar":
                     button1.PerformClick();
                     break;
-                case "despega":
+                case "despegar":
                     button2.PerformClick();
                     break;
-                case "aterriza":
+                case "aterrizar":
                     button3.PerformClick();
                     break;
                 case "derecha":
