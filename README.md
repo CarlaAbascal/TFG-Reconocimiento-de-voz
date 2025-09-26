@@ -6,7 +6,7 @@
 
 
 
-**Funcionando OK:** conectar, despegar, derecha, avanzar
+**Funcionando OK:** conectar, despegar, derecha, avanzar, aterriza
 
-&nbsp;
+ 
 

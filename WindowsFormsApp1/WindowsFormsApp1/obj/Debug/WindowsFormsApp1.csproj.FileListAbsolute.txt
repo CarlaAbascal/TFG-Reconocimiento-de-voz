@@ -22,3 +22,4 @@ C:\Users\CARLA\Desktop\UNIVERSITAT\TFG\TFG-Reconocimiento-de-voz\WindowsFormsApp
 C:\Users\CARLA\Desktop\UNIVERSITAT\TFG\TFG-Reconocimiento-de-voz\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsF.A1EEDF9B.Up2Date
 C:\Users\CARLA\Desktop\UNIVERSITAT\TFG\TFG-Reconocimiento-de-voz\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.exe
 C:\Users\CARLA\Desktop\UNIVERSITAT\TFG\TFG-Reconocimiento-de-voz\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.pdb
+C:\Users\CARLA\Desktop\UNIVERSITAT\TFG\TFG-Reconocimiento-de-voz\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.exe.config

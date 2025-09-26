@@ -57,35 +57,38 @@ namespace WindowsFormsApp1
         {
             string comando = e.Result.Text;
 
-            // Mostramos en el título de la ventana lo reconocido
-            this.Text = $"Reconocido: {comando}";
-
-            switch (comando)
+            this.BeginInvoke((MethodInvoker)delegate //Mete la acción en cola de la UI y no bloquea el reconocimiento
             {
-                //Segun lo que se diga, simula click a un boton 
-                case "conectar":
-                    button1.PerformClick();
-                    break;
-                case "despegar":
-                    button2.PerformClick();
-                    break;
-                case "aterrizar":
-                    button3.PerformClick();
-                    break;
-                case "derecha":
-                    button4.PerformClick();
-                    break;
-                case "izquierda":
-                    button5.PerformClick();
-                    break;
-                case "avanzar":
-                    button6.PerformClick();
-                    break;
-                case "detener":
-                    button7.PerformClick();
-                    break;
-            }
+                this.Text = $"Reconocido: {comando}";
+
+                switch (comando)
+                {
+                    //Simula el click a los botones 
+                    case "conectar":
+                        button1.PerformClick();
+                        break;
+                    case "despegar":
+                        button2.PerformClick();
+                        break;
+                    case "aterrizar":
+                        button3.PerformClick();
+                        break;
+                    case "derecha":
+                        button4.PerformClick();
+                        break;
+                    case "izquierda":
+                        button5.PerformClick();
+                        break;
+                    case "avanzar":
+                        button6.PerformClick();
+                        break;
+                    case "detener":
+                        button7.PerformClick();
+                        break;
+                }
+            });
         }
+
 
         // Recorrer la lista con los datos de telemetría y mostrar la altitud en un label
         private void ProcesarTelemetria(byte id, List<(string nombre, float valor)> telemetria)
@@ -138,8 +141,8 @@ namespace WindowsFormsApp1
 
         private void button6_Click(object sender, EventArgs e)
         {
-            // Avanzar 5 m
-            miDron.Mover("Forward", 5);
+            // Avanzar 10 m
+            miDron.Mover("Forward", 10);
         }
 
         private void button7_Click(object sender, EventArgs e)
