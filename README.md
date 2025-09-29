@@ -2,11 +2,9 @@
 
 
 
-**Palabras que reconoce:** conectar, despegar, aterrizar, derecha, izquierda, avanzar, detener
+**Palabras que reconoce y funcionando:** conectar, despegar, aterrizar, derecha, izquierda, avanzar
 
 
 
-**Funcionando OK:** conectar, despegar, derecha, avanzar, aterriza
-
- 
+**Problemas con avanzar en la dirección actual del dron.** 
 
