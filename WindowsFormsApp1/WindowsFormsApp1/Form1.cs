@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
 using System.Speech.Recognition;
+using System.Speech.Synthesis;   // >>> NUEVO
 using System.Windows.Forms;
 using csDronLink;
 
@@ -12,12 +13,24 @@ namespace WindowsFormsApp1
     {
         Dron miDron = new Dron();
         SpeechRecognitionEngine recognizer; // Reconocimiento de voz
+        SpeechSynthesizer voz = new SpeechSynthesizer();   // >>> NUEVO
+
+        // >>> NUEVO — estado conversacional
+        string pendienteAccion = "";
+        bool esperandoConfirmacion = false;
 
         public Form1()
         {
             InitializeComponent();
             CheckForIllegalCrossThreadCalls = false;
             this.FormClosing += Form1_FormClosing;
+
+            voz.Rate = 0;   // velocidad normal
+        }
+
+        private void Hablar(string texto)   // >>> NUEVO
+        {
+            voz.SpeakAsync(texto);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -42,7 +55,17 @@ namespace WindowsFormsApp1
                 "izquierda",
                 "girar a la derecha",
                 "girar a la izquierda",
-                "avanzar"
+                "avanzar",
+
+                // >>> NUEVO — algunas frases naturales típicas
+                "creo que ya podemos despegar",
+                "sube",
+                "baja",
+                "sí",
+                "si",
+                "vale",
+                "ok",
+                "adelante"
             });
 
             GrammarBuilder gb = new GrammarBuilder();
@@ -80,45 +103,139 @@ namespace WindowsFormsApp1
             recognizer.RecognizeAsync(RecognizeMode.Multiple);
         }
 
+        // >>> NUEVO — Intérprete conversacional offline
+
+        private (string accion, bool requiereConfirmacion, string mensaje) Interpretar(string frase)
+        {
+            frase = frase.ToLower().Trim();
+
+            // Confirmaciones
+            if (frase == "si" || frase == "sí" || frase == "vale" || frase == "ok" || frase == "adelante")
+                return ("confirmar", false, "Perfecto, ejecutando la orden.");
+
+            // >>> NUEVO: Conectar
+            if (frase.Contains("conectar") || frase.Contains("conéctate") || frase.Contains("conectate"))
+                return ("conectar", false, "Conectando al simulador.");
+
+            // Despegar
+            if (frase.Contains("despeg"))
+                return ("despegar", true, "¿Confirmas que quieres que despegue?");
+
+            // Aterrizar
+            if (frase.Contains("aterriz"))
+                return ("aterrizar", true, "¿Confirmas que quieres que aterrice?");
+
+            // >>> ELIMINADO: subir / bajar
+
+            // Girar izquierda
+            if (frase.Contains("izquierda"))
+                return ("girar_izq", false, "Girando a la izquierda.");
+
+            // Girar derecha
+            if (frase.Contains("derecha"))
+                return ("girar_der", false, "Girando a la derecha.");
+
+            // Avanzar
+            if (frase.Contains("avanza"))
+                return ("avanzar", false, "Avanzando.");
+
+            return ("ninguna", false, "No he entendido la orden.");
+        }
+
         private void Recognizer_SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
         {
-            string comando = e.Result.Text;
+            string frase = e.Result.Text;
             float conf = (float)e.Result.Confidence;
 
-          
             // Ejecutar en cola de UI (no bloquea el hilo del recognizer)
             this.BeginInvoke((MethodInvoker)delegate
             {
-                // feedback
-                this.Text = $"Reconocido: {comando} (conf {conf:F2})";
+                this.Text = $"Reconocido: {frase} (conf {conf:F2})";
 
-                switch (comando)
+                // >>> NUEVO — Si estaba esperando confirmación
+                if (esperandoConfirmacion)
                 {
-                    case "conectar":
-                        button1.PerformClick();
-                        break;
-                    case "despegar":
-                        button2.PerformClick();
-                        break;
-                    case "aterrizar":
-                        button3.PerformClick();
-                        break;
-                    case "derecha":
-                    case "girar a la derecha":
-                        button4.PerformClick();
-                        break;
-                    case "izquierda":
-                    case "girar a la izquierda":
-                        button5.PerformClick();
-                        break;
-                    case "avanzar":
-                        button6.PerformClick();
-                        break;
+                    var r = Interpretar(frase);
+
+                    if (r.accion == "confirmar")
+                    {
+                        Hablar("Confirmado.");
+                        EjecutarAccion(pendienteAccion);
+                    }
+                    else
+                    {
+                        Hablar("Cancelado.");
+                    }
+
+                    esperandoConfirmacion = false;
+                    pendienteAccion = "";
+                    return;
                 }
+
+                // >>> NUEVO — Interpretamos la frase libremente
+                var resultado = Interpretar(frase);
+                string accion = resultado.accion;
+                bool requiere = resultado.requiereConfirmacion;
+                string mensaje = resultado.mensaje;
+
+                // Nada reconocido
+                if (accion == "ninguna")
+                {
+                    Hablar(mensaje);
+                    return;
+                }
+
+                // Requiere confirmación
+                if (requiere)
+                {
+                    Hablar(mensaje);
+                    pendienteAccion = accion;
+                    esperandoConfirmacion = true;
+                    return;
+                }
+
+                // Ejecución directa
+                EjecutarAccion(accion);
             });
         }
 
-        // Telemetría (sin cambios)
+        // >>> NUEVO — Mapea acciones a botones reales
+        private void EjecutarAccion(string accion)
+        {
+            switch (accion)
+            {
+                case "conectar":        // >>> NUEVO
+                    button1.PerformClick();
+                    break;
+
+                case "despegar":
+                    button2.PerformClick();
+                    break;
+
+                case "aterrizar":
+                    button3.PerformClick();
+                    break;
+
+                case "girar_der":
+                    button4.PerformClick();
+                    break;
+
+                case "girar_izq":
+                    button5.PerformClick();
+                    break;
+
+                case "avanzar":
+                    button6.PerformClick();
+                    break;
+
+                default:
+                    Hablar("Acción no reconocida.");
+                    break;
+            }
+        }
+
+
+        // Telemetría
         private void ProcesarTelemetria(byte id, List<(string nombre, float valor)> telemetria)
         {
             foreach (var t in telemetria)
@@ -131,6 +248,7 @@ namespace WindowsFormsApp1
             }
         }
 
+        // ----------------------BOTONES-------------------------
         private void button1_Click_1(object sender, EventArgs e)
         {
             miDron.Conectar("simulacion");
@@ -175,7 +293,6 @@ namespace WindowsFormsApp1
             miDron.Mover("Forward", 10, bloquear: false);
         }
 
-        
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             try
