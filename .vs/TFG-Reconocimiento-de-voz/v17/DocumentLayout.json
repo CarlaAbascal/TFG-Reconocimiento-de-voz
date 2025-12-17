@@ -7,6 +7,10 @@
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:WindowsFormsApp1\\WindowsFormsApp1\\Form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\CARLA\\Desktop\\UNIVERSITAT\\TFG\\TFG-Reconocimiento-de-voz\\WindowsFormsApp1\\WindowsFormsApp1\\ia_simple.py||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:WindowsFormsApp1\\WindowsFormsApp1\\ia_simple.py||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\CARLA\\Desktop\\UNIVERSITAT\\TFG\\TFG-Reconocimiento-de-voz\\WindowsFormsApp1\\WindowsFormsApp1\\conversacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:WindowsFormsApp1\\WindowsFormsApp1\\conversacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -22,8 +26,21 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ia_simple.py",
+              "DocumentMoniker": "C:\\Users\\CARLA\\Desktop\\UNIVERSITAT\\TFG\\TFG-Reconocimiento-de-voz\\WindowsFormsApp1\\WindowsFormsApp1\\ia_simple.py",
+              "RelativeDocumentMoniker": "WindowsFormsApp1\\WindowsFormsApp1\\ia_simple.py",
+              "ToolTip": "C:\\Users\\CARLA\\Desktop\\UNIVERSITAT\\TFG\\TFG-Reconocimiento-de-voz\\WindowsFormsApp1\\WindowsFormsApp1\\ia_simple.py",
+              "RelativeToolTip": "WindowsFormsApp1\\WindowsFormsApp1\\ia_simple.py",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAQwB0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-12-17T22:02:22.793Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -32,27 +49,27 @@
               "RelativeDocumentMoniker": "WindowsFormsApp1\\WindowsFormsApp1\\Form1.cs",
               "ToolTip": "C:\\Users\\CARLA\\Desktop\\UNIVERSITAT\\TFG\\TFG-Reconocimiento-de-voz\\WindowsFormsApp1\\WindowsFormsApp1\\Form1.cs",
               "RelativeToolTip": "WindowsFormsApp1\\WindowsFormsApp1\\Form1.cs",
-              "ViewState": "AgIAANkAAAAAAAAAAAAAwOEAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAEkBAAAAAAAAAAAowFsBAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-23T19:09:40.214Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "conversacion.cs",
               "DocumentMoniker": "C:\\Users\\CARLA\\Desktop\\UNIVERSITAT\\TFG\\TFG-Reconocimiento-de-voz\\WindowsFormsApp1\\WindowsFormsApp1\\conversacion.cs",
               "RelativeDocumentMoniker": "WindowsFormsApp1\\WindowsFormsApp1\\conversacion.cs",
               "ToolTip": "C:\\Users\\CARLA\\Desktop\\UNIVERSITAT\\TFG\\TFG-Reconocimiento-de-voz\\WindowsFormsApp1\\WindowsFormsApp1\\conversacion.cs",
               "RelativeToolTip": "WindowsFormsApp1\\WindowsFormsApp1\\conversacion.cs",
-              "ViewState": "AgIAABsAAAAAAAAAAAAuwDEAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABkAAAAAAAAAAAAAADEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-10T15:38:51.611Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Form1.Designer.cs",
               "DocumentMoniker": "C:\\Users\\CARLA\\Desktop\\UNIVERSITAT\\TFG\\TFG-Reconocimiento-de-voz\\WindowsFormsApp1\\WindowsFormsApp1\\Form1.Designer.cs",
               "RelativeDocumentMoniker": "WindowsFormsApp1\\WindowsFormsApp1\\Form1.Designer.cs",
@@ -60,8 +77,7 @@
               "RelativeToolTip": "WindowsFormsApp1\\WindowsFormsApp1\\Form1.Designer.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-29T08:08:23.348Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-29T08:08:23.348Z"
             }
           ]
         }

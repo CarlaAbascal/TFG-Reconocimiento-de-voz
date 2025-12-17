@@ -147,12 +147,17 @@ namespace WindowsFormsApp1
             string frase = e.Result.Text;
             float conf = (float)e.Result.Confidence;
 
-            // Ejecutar en cola de UI (no bloquea el hilo del recognizer)
             this.BeginInvoke((MethodInvoker)delegate
             {
                 this.Text = $"Reconocido: {frase} (conf {conf:F2})";
 
-                // >>> NUEVO — Si estaba esperando confirmación
+                //IA SIEMPRE AQUÍ (una sola vez)
+                string respuestaIA = LlamarIA(frase);
+                Hablar(respuestaIA);
+                return;
+
+                // -------- LÓGICA ORIGINAL (NO TOCAR) --------
+
                 if (esperandoConfirmacion)
                 {
                     var r = Interpretar(frase);
@@ -172,20 +177,17 @@ namespace WindowsFormsApp1
                     return;
                 }
 
-                // >>> NUEVO — Interpretamos la frase libremente
                 var resultado = Interpretar(frase);
                 string accion = resultado.accion;
                 bool requiere = resultado.requiereConfirmacion;
                 string mensaje = resultado.mensaje;
 
-                // Nada reconocido
                 if (accion == "ninguna")
                 {
                     Hablar(mensaje);
                     return;
                 }
 
-                // Requiere confirmación
                 if (requiere)
                 {
                     Hablar(mensaje);
@@ -194,7 +196,6 @@ namespace WindowsFormsApp1
                     return;
                 }
 
-                // Ejecución directa
                 EjecutarAccion(accion);
             });
         }
@@ -307,5 +308,53 @@ namespace WindowsFormsApp1
             }
             catch { }
         }
+
+
+        private string LlamarIA(string frase)
+        {
+            try
+            {
+                var p = new System.Diagnostics.Process();
+
+                // Python de Anaconda (correcto)
+                p.StartInfo.FileName = @"C:\Users\CARLA\miniconda3\python.exe";
+
+                // Ruta CORRECTA al script (verbatim string)
+                string script = @"C:\Users\CARLA\Desktop\UNIVERSITAT\TFG\TFG-Reconocimiento-de-voz\WindowsFormsApp1\WindowsFormsApp1\ia_simple.py";
+
+                p.StartInfo.Arguments = $"\"{script}\" \"{frase}\"";
+                p.StartInfo.UseShellExecute = false;
+                p.StartInfo.RedirectStandardOutput = true;
+                p.StartInfo.RedirectStandardError = true;
+                p.StartInfo.CreateNoWindow = true;
+
+                p.Start();
+
+                string output = p.StandardOutput.ReadToEnd();
+                string error = p.StandardError.ReadToEnd();
+
+                p.WaitForExit();
+
+                if (!string.IsNullOrWhiteSpace(error))
+                {
+                    MessageBox.Show(error, "ERROR PYTHON");
+                    return "Error en la IA";
+                }
+
+
+                if (string.IsNullOrWhiteSpace(output))
+                    return "IA ejecutada pero sin salida";
+
+                return output.Trim();
+            }
+            catch (Exception ex)
+            {
+                return "ERROR C#: " + ex.Message;
+            }
+        }
+
+
+
+
     }
 }

@@ -2,13 +2,19 @@
 
 
 
+----------Versión 1.5-------------
+
+IA integrada -- Afinar errores 
+
+
+
+
+
 ----------Versión 1.4-------------
 
 
 
-Reconocimiento de mas palabras + confirmación de las acciones 
-
-
+Reconocimiento de mas palabras + confirmación de las acciones
 
 
 
