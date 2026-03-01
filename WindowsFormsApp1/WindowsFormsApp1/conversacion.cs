@@ -1,4 +1,6 @@
-es necesario tener el fichero conversacion_offline.cs 
+// conversacion.cs
+// Reglas OFFLINE: rápidas, seguras y sin depender de IA.
+// (No hace falta un conversacion_offline.cs adicional: este fichero ya cumple ese papel.)
 
 using System;
 
@@ -8,11 +10,15 @@ namespace WindowsFormsApp1
     {
         public static (string accion, bool requiereConfirmacion, string mensaje) Interpretar(string frase)
         {
-            frase = frase.ToLower();
+            frase = frase.ToLower().Trim();
 
             // Confirmaciones
-            if (frase == "sí" || frase == "si" || frase == "vale" || frase == "ok" || frase == "adelante")
+            if (frase == "s" || frase == "sí" || frase == "si" || frase == "vale" || frase == "ok" || frase == "adelante")
                 return ("confirmar", false, "Perfecto, ejecutando la orden.");
+
+            // Conectar
+            if (frase.Contains("conectar") || frase.Contains("conéctate") || frase.Contains("conectate"))
+                return ("conectar", false, "Conectando al simulador.");
 
             // Despegar
             if (frase.Contains("despeg"))
@@ -46,4 +52,4 @@ namespace WindowsFormsApp1
             return ("ninguna", false, "No he entendido la orden.");
         }
     }
-}
+}
