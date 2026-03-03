@@ -45,8 +45,12 @@ namespace WindowsFormsApp1
                 return ("girar_der", false, "Girando a la derecha.");
 
             // Avanzar
-            if (frase.Contains("avanza") || frase.Contains("adelante"))
+            if (frase.Contains("avanza") || frase.Contains("adelante") || 
+                frase.Contains("hacia delante") || frase.Contains("delante"))
+            {
                 return ("avanzar", false, "Avanzando.");
+            }
+
 
             // Nada detectado
             return ("ninguna", false, "No he entendido la orden.");

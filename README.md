@@ -1,5 +1,15 @@
 # TFG-Reconocimiento-de-voz
 
+----------Versión 1.7-------------
+
+IA integrada funcionando OK 
+
+
+
+----------Versión 1.6-------------
+
+
+Errores corregidos 
 
 
 ----------Versión 1.5-------------

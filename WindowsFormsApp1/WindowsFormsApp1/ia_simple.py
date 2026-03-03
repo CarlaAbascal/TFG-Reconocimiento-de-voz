@@ -68,8 +68,9 @@ def fallback_rules(text: str):
         return ("bajar", 1, "¿Confirmas que quieres que baje?")
 
     # Avanzar
-    if "avanza" in text or "adelante" in text:
+    if "avanza" in text or "adelante" in text or "hacia delante" in text or "delante" in text:
         return ("avanzar", 0, "Avanzando.")
+
 
     # Girar izquierda
     if "izquierda" in text:
