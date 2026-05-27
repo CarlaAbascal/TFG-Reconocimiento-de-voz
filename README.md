@@ -2,6 +2,8 @@
 
 
 ----------Versión 2.0-------------
+
+
 Reconocimiento de voz afinado
 Avanza X metros
 Gira X grados 
@@ -12,8 +14,6 @@ Gira X grados
 
 
 Reconocimiento de mas palabras + confirmación de las acciones 
-
-
 
 
 
