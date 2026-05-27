@@ -1,6 +1,11 @@
 # TFG-Reconocimiento-de-voz
 
 
+----------Versión 2.0-------------
+Reconocimiento de voz afinado
+Avanza X metros
+Gira X grados 
+
 
 ----------Versión 1.4-------------
 
